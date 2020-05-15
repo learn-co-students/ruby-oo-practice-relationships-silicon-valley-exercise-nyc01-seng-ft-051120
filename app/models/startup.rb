@@ -5,7 +5,9 @@ class Startup
 
     @@all = []
 
-    def initialize
+    def initialize(name,domain)
+        @name = name
+        @domain = domain
         Startup.all << self
     end
 
@@ -30,4 +32,34 @@ class Startup
         end
     end
 
+    def sign_contract(venture_capitalist, type, amount)
+        FundingRound.new(self,venture_capitalist,type,amount)
+    end
+
+    def funding_round
+        FundingRound.all.map do |funding_round_instance|
+            funding_round_instance.startup == self
+        end
+    end
+
+    def num_funding_rounds
+        funding_round.count
+    end
+
+    def total_funds
+        funding_round.each do |funding_round_for_startup|  
+        total_funds += funding_round_for_startup.amount
+        end
+        total_funds
+    end
+
+    def investors
+        funding_round.map do |funding_round_instance|
+            funding_round_instance.venture_capitalist
+        end.uniq
+    end
+
+    def big_investors
+        investors.tres_commas_club
+    end
 end
