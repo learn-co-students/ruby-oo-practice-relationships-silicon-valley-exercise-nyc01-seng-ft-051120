@@ -1,24 +1,22 @@
 class VentureCapitalist
-    attr_reader :name, 
+    attr_reader :name, :total_worth
     attr_accessor :funding_round
 
     @@all = []
 
-    def initialize
+    def initialize(name,total_worth)
+        @name = name
+        @total_worth = total_worth
         VentureCapitalist.all << self
-    end
-
-    def total_worth
-        total_worth
     end
 
     def self.all
         @@all
     end
 
-    def tres_commas_club
-        VentureCapitalist.all.map do |venture_capitalist_instance|
-            venture_capitalist_instance.total_worth > 1,000,000,000
+    def self.tres_commas_club
+        VentureCapitalist.all.select do |venture_capitalist_instance|
+            venture_capitalist_instance.total_worth > 1000000000
         end
     end
 
@@ -27,8 +25,8 @@ class VentureCapitalist
     end
 
     def funding_rounds
-        FundingRound.all.map do |funding_round_instance|
-            funding_round_instance.venture_capitalist == self
+        FundingRound.all.select do |funding_round_instance|
+            funding_round_instance.venture_capitalist == self       
         end
     end
 
@@ -45,8 +43,9 @@ class VentureCapitalist
     end
 
     def invested(domain)
+        amount = 0
         funding_rounds.map do |funding_round_instance|
-        funding_round_instance.startup.domain == domain
+        funding_round_instance.domain == domain
         amount += funding_round_instance.amount
         end
         amount

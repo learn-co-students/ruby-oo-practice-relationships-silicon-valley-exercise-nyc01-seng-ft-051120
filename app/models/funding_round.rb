@@ -23,7 +23,8 @@ class FundingRound
 
     def venture_capitalist
         VentureCapitalist.all.find do |venture_capitalist|
-       venture_capitalist.funding_round == self
+        venture_capitalist.funding_round == self
+        end
     end
 
     def type
@@ -31,7 +32,10 @@ class FundingRound
     end
 
     def investment
-        #amount invested
+        total_investment = 0
+        venture_capitalist.each do |venture_capitalist_instance|
+        total_investment += venture_capitalist_instance.amount.to_f
+        end
     end
 
 end

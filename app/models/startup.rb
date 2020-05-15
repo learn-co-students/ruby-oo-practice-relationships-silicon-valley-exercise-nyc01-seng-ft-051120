@@ -5,9 +5,10 @@ class Startup
 
     @@all = []
 
-    def initialize(name,domain)
+    def initialize(name,domain,founder)
         @name = name
         @domain = domain
+        @founder = founder
         Startup.all << self
     end
 
@@ -20,13 +21,13 @@ class Startup
         self.name = name
     end
 
-    def find_by_founder(founder)
+    def self.find_by_founder(founder)
         Startup.all.find do |startup_instance|
             startup_instance.founder == founder
         end
     end
 
-    def domains
+    def self.domains
         Startup.all.map do |startup_instance|
             startup_instance.domain
         end
