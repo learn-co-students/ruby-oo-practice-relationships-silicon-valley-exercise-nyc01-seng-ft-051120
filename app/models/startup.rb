@@ -8,7 +8,6 @@ class Startup
    attr_reader :founder, :domain
    
    @@all = []
-
    def initialize(name, founder, domain)
       @name = name
       @founder = founder
@@ -43,5 +42,22 @@ class Startup
       funding_round = FundingRound.new(self, venture_capitalist, type, amount)
    end
 
+   def num_funding_rounds
+      FundingRound.all.select{|round| round.startup == self}.count 
+   end  
+
+   def helper_method
+      FundingRound.all.select do |startup|
+         startup.name == self 
+      end 
+   end 
+        
+   end 
+   
+   def total_funds 
+      if self.helper_method == true 
+         return self.investment
+      end 
+   end 
    binding.pry
 end
