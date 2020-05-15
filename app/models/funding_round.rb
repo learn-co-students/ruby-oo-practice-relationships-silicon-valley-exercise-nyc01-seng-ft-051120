@@ -1,7 +1,7 @@
 require 'pry'
 
 class FundingRound
-    attr_reader :startup, :venture_capitalist
+    attr_reader :startup, :venture_capitalist, :investment
     attr_accessor :type
 
     

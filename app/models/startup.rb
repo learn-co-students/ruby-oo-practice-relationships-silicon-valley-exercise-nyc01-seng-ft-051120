@@ -53,5 +53,27 @@ class Startup
         end
         counter
      end
+
+     def total_funds
+        counter = 0
+        FundingRound.all.each do |investment|
+            if investment.startup == self
+            counter += investment.investment
+            end
+        end
+        counter
+    end
+
+    def investors
+        FundingRound.all.map do |investor|
+            if investor.startup == self
+                investor.venture_capitalist
+            end
+        end
+    end
+    
+
+
+
 binding.pry
 end
