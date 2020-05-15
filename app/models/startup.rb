@@ -38,4 +38,20 @@ class Startup
             startup.domain
         end
     end
+    def self.sign_contract(vc, type, investment)
+        FundingRound.new(self, vc ,  type, investment)
+       
+    end
+ 
+
+     def num_funding_rounds
+        counter=0
+        FundingRound.all.each do |contract|
+            if contract.startup==self
+                counter +=1
+            end
+        end
+        counter
+     end
+binding.pry
 end
