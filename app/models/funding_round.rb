@@ -1,9 +1,11 @@
 require 'pry'
+require_relative './startup.rb'
+require_relative './venture_capitalist.rb'
 
 class FundingRound
 
    attr_accessor :type
-   attr_reader :startup, :venture_capitalist
+   attr_reader :startup, :venture_capitalist, :investment
 
    @@all = []
 
@@ -18,7 +20,6 @@ class FundingRound
    def self.all 
       @@all 
    end 
-
 
 
 end
