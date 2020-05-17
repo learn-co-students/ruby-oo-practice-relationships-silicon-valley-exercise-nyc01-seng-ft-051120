@@ -1,5 +1,6 @@
 require 'pry'
 require './tools/console.rb'
+require_relative './venture_capitalist.rb'
 
 class Startup
    
@@ -69,7 +70,19 @@ class Startup
             if investor.startup == self
                 investor.venture_capitalist
             end
+        end.uniq
+    end
+    def big_investors
+        investors.select do |vc|
+             VentureCapitalist.tres_commas_club.include?(vc)
         end
+
+
+        # FundingRound.all.select do |fund|
+        #    if fund.startup==self && VentureCapitalist.tres_commas_club.include?(fund.venture_capitalist)
+        #     return fund.venture_capitalist
+        #    end
+        # end
     end
     
 

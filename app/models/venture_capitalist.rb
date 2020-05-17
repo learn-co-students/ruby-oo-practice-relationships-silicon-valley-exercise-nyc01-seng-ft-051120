@@ -11,12 +11,12 @@ class VentureCapitalist
         @@all << self
     end
 
-    def all
+    def self.all
         @@all
     end
 
-    def tres_commas_club
-       all.select do |vc|
+    def self.tres_commas_club
+        all.select do |vc|
         vc.total_worth >  1000000000
        end
     end
