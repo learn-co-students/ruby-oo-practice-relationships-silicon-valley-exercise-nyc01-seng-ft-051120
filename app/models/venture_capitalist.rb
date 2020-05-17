@@ -31,7 +31,7 @@ class VentureCapitalist
     end
 
     def portfolio
-        funding_round.map do |funding_round_instance|
+        funding_rounds.map do |funding_round_instance|
             funding_round_instance.startup
         end.uniq
     end

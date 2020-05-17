@@ -1,3 +1,4 @@
+
 require_relative '../config/environment.rb'
 
 def reload
@@ -8,11 +9,11 @@ end
 # so they will be available to test and play around with in your console
 
 
-startup1 = Startup.new("cool_app","cool.com","Sam G")
-startup2 = Startup.new("fun_app","fun.com","John")
-
 investor1 = VentureCapitalist.new("Beth",2000000000)
 investor2 = VentureCapitalist.new("Holly",20000000)
+
+startup1 = Startup.new("cool_app","cool.com","Sam G")
+startup2 = Startup.new("fun_app","fun.com","John")
 
 funding1 = FundingRound.new(startup1,investor1,"seedmoney", 1000)
 
