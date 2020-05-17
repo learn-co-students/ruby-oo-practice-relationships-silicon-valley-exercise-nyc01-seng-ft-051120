@@ -17,7 +17,7 @@ class Startup
 
     end
 
-    def all
+    def self.all
         @@all
     end
 
@@ -86,7 +86,4 @@ class Startup
     end
     
 
-
-
-binding.pry
 end
