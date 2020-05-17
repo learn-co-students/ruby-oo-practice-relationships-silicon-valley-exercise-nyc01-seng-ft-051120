@@ -16,6 +16,9 @@ startup1 = Startup.new("cool_app","cool.com","Sam G")
 startup2 = Startup.new("fun_app","fun.com","John")
 
 funding1 = FundingRound.new(startup1,investor1,"seedmoney", 1000)
+funding2 = FundingRound.new(startup1,investor2,"advancedfunding", 7000)
+funding3 = FundingRound.new(startup2,investor1,"initialcapitalmoney", 3000)
+funding4 = FundingRound.new(startup1,investor1,"evenmorefunding", 10000)
 
 binding.pry
 0 #leave this here to ensure binding.pry isn't the last line

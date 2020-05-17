@@ -20,8 +20,8 @@ class VentureCapitalist
         end
     end
 
-    def offer_contract(startup,type, amount)
-        FundingRound.new(startup,self,type,amount)
+    def offer_contract(startup,type, investment)
+        FundingRound.new(startup,self,type,investment)
     end
 
     def funding_rounds
@@ -38,15 +38,16 @@ class VentureCapitalist
 
     def biggest_investment
         funding_rounds.max_by do |funding_round_instance|
-        funding_round_instance.amount
+        funding_round_instance.investment
         end
     end
 
     def invested(domain)
         amount = 0
-        funding_rounds.map do |funding_round_instance|
-        funding_round_instance.domain == domain
-        amount += funding_round_instance.amount
+        funding_rounds.each do |funding_round_instance|
+            if funding_round_instance.startup.domain == domain
+            amount += funding_round_instance.investment
+            end
         end
         amount
     end

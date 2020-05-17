@@ -33,12 +33,12 @@ class Startup
         end
     end
 
-    def sign_contract(venture_capitalist, type, amount)
-        FundingRound.new(self,venture_capitalist,type,amount)
+    def sign_contract(venture_capitalist, type, investment)
+        FundingRound.new(self,venture_capitalist,type,investment)
     end
 
     def funding_round
-        FundingRound.all.map do |funding_round_instance|
+        FundingRound.all.select do |funding_round_instance|
             funding_round_instance.startup == self
         end
     end
@@ -48,8 +48,9 @@ class Startup
     end
 
     def total_funds
+        total_funds = 0
         funding_round.each do |funding_round_for_startup|  
-        total_funds += funding_round_for_startup.amount
+        total_funds += funding_round_for_startup.investment
         end
         total_funds
     end
@@ -61,6 +62,8 @@ class Startup
     end
 
     def big_investors
-        investors.tres_commas_club
+        investors.select do |investor|
+            VentureCapitalist.tres_commas_club.include?(investor)
+        end
     end
 end
